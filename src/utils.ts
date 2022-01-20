@@ -88,6 +88,7 @@ export const isCallable = (fn: any) => {
 };
 
 const boundedMap = new WeakMap<CallableFunction, boolean>();
+// ??
 export function isBoundedFunction(fn: CallableFunction) {
   if (boundedMap.has(fn)) {
     return boundedMap.get(fn);
@@ -109,8 +110,10 @@ export function getWrapperId(name: string) {
   return `__qiankun_microapp_wrapper_for_${snakeCase(name)}__`;
 }
 
+// 返回global对象
 export const nativeGlobal = new Function('return this')();
 
+// global定义__app_instance_name_map__对象
 const getGlobalAppInstanceMap = once<() => Record<string, number>>(() => {
   if (!nativeGlobal.hasOwnProperty('__app_instance_name_map__')) {
     Object.defineProperty(nativeGlobal, '__app_instance_name_map__', {
@@ -127,6 +130,7 @@ const getGlobalAppInstanceMap = once<() => Record<string, number>>(() => {
  * Get app instance name with the auto-increment approach
  * @param appName
  */
+// vue_0 vue_1相同子应用挂载后的命名
 export const genAppInstanceIdByName = (appName: string): string => {
   const globalAppInstanceMap = getGlobalAppInstanceMap();
   if (!(appName in globalAppInstanceMap)) {
@@ -139,6 +143,7 @@ export const genAppInstanceIdByName = (appName: string): string => {
 };
 
 /** 校验子应用导出的 生命周期 对象是否正确 */
+// 子应用必须定义bootstrap, mount, unmount生命周期
 export function validateExportLifecycle(exports: any) {
   const { bootstrap, mount, unmount } = exports ?? {};
   return isFunction(bootstrap) && isFunction(mount) && isFunction(unmount);
@@ -221,6 +226,7 @@ export function getXPathForElement(el: Node, document: Document): string | void 
     pos = 0;
     tmpEle = element;
     while (tmpEle) {
+      // nodeType === 1 元素
       if (tmpEle.nodeType === 1 && tmpEle.nodeName === element.nodeName) {
         // If it is ELEMENT_NODE of the same name
         pos += 1;
@@ -239,10 +245,12 @@ export function getXPathForElement(el: Node, document: Document): string | void 
   return xpath;
 }
 
+// 返回container node
 export function getContainer(container: string | HTMLElement): HTMLElement | null {
   return typeof container === 'string' ? document.querySelector(container) : container;
 }
 
+// 返回container节点路径
 export function getContainerXPath(container?: string | HTMLElement): string | void {
   if (container) {
     const containerElement = getContainer(container);
