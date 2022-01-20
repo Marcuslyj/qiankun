@@ -1,4 +1,6 @@
-import { loadMicroApp } from '../../es';
+// import { loadMicroApp } from '../../es';
+import { loadMicroApp } from 'qiankun';
+
 
 let app;
 

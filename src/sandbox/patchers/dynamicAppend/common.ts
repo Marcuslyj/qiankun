@@ -189,7 +189,7 @@ function getOverwrittenAppendChildOrInsertBefore(opts: {
               stylesheetElement = convertLinkAsStyle(
                 element,
                 (styleElement) => css.process(mountDOM, styleElement, appName),
-                fetch,
+                fetch as any,
               );
               dynamicLinkAttachedInlineStyleMap.set(element, stylesheetElement);
             } else {

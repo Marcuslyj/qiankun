@@ -1,5 +1,6 @@
 import 'zone.js'; // for angular subapp
-import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from '../../es';
+// import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from '../../es';
+import { registerMicroApps, runAfterFirstMounted, setDefaultMountApp, start, initGlobalState } from 'qiankun';
 import './index.less';
 
 /**
@@ -12,7 +13,7 @@ import render from './render/ReactRender';
 /**
  * Step1 初始化应用（可选）
  */
-render({ loading: true });
+// render({ loading: true });
 
 const loader = loading => render({ loading });
 
@@ -29,13 +30,13 @@ registerMicroApps(
       loader,
       activeRule: '/react16',
     },
-    {
-      name: 'react15',
-      entry: '//localhost:7102',
-      container: '#subapp-viewport',
-      loader,
-      activeRule: '/react15',
-    },
+    // {
+    //   name: 'react15',
+    //   entry: '//localhost:7102',
+    //   container: '#subapp-viewport',
+    //   loader,
+    //   activeRule: '/react15',
+    // },
     {
       name: 'vue',
       entry: '//localhost:7101',
@@ -43,13 +44,13 @@ registerMicroApps(
       loader,
       activeRule: '/vue',
     },
-    {
-      name: 'angular9',
-      entry: '//localhost:7103',
-      container: '#subapp-viewport',
-      loader,
-      activeRule: '/angular9',
-    },
+    // {
+    //   name: 'angular9',
+    //   entry: '//localhost:7103',
+    //   container: '#subapp-viewport',
+    //   loader,
+    //   activeRule: '/angular9',
+    // },
     {
       name: 'purehtml',
       entry: '//localhost:7104',
@@ -57,13 +58,13 @@ registerMicroApps(
       loader,
       activeRule: '/purehtml',
     },
-    {
-      name: 'vue3',
-      entry: '//localhost:7105',
-      container: '#subapp-viewport',
-      loader,
-      activeRule: '/vue3',
-    },
+    // {
+    //   name: 'vue3',
+    //   entry: '//localhost:7105',
+    //   container: '#subapp-viewport',
+    //   loader,
+    //   activeRule: '/vue3',
+    // },
   ],
   {
     beforeLoad: [
